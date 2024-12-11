@@ -71,7 +71,7 @@ app.get('/paste/:id', (req, res) => {
         res.send(`
             <html>
             <head>
-                <title>Pistebin</title>
+                <title>Pastebin</title>
                 <style>
                     body {
                         font-family: 'Arial', sans-serif;
@@ -136,12 +136,12 @@ app.get('/paste/:id', (req, res) => {
                         font-size: 16px;
                         text-align: center;
                     }
-                    .loading-spinner {
+                    .loading {
                         display: none;
                         text-align: center;
                         margin-top: 20px;
                     }
-                    .loading-spinner:before {
+                    .loading:before {
                         content: '⏳';
                         font-size: 30px;
                         animation: spin 1s infinite linear;
@@ -169,18 +169,18 @@ app.get('/paste/:id', (req, res) => {
                     </div>
                     <pre id="pasteContent">${escapeHtml(row.content)}</pre>
                     <span id="copyMessage" class="copy-message">Copied to Clipboard!</span>
-                    <div id="loadingSpinner" class="loading-spinner"></div>
+                    <div id="loading" class="loading"></div>
                 </div>
                 <script>
                     const copyButton = document.getElementById('copyButton');
                     const copyMessage = document.getElementById('copyMessage');
                     const pasteContent = document.getElementById('pasteContent');
-                    const loadingSpinner = document.getElementById('loadingSpinner');
+                    const loading = document.getElementById('loading');
 
                     copyButton.addEventListener('click', () => {
-                        loadingSpinner.style.display = 'block';
+                        loading.style.display = 'block';
                         navigator.clipboard.writeText(pasteContent.innerText).then(() => {
-                            loadingSpinner.style.display = 'none';
+                            loading.style.display = 'none';
                             copyMessage.style.display = 'inline';
                             setTimeout(() => copyMessage.style.display = 'none', 2000);
                         });
