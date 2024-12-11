@@ -1,0 +1,253 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Pistebin</title>
+     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+     <style>
+         :root {
+             --primary-color: #00f7ff;
+             --secondary-color: #ff00e6;
+             --background-color: #060615;
+             --text-color: #e0e0ff;
+             --nav-height: 80px;
+             --transition-speed: 0.3s;
+             --glow-strength: 5px;
+         }
+
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+         }
+
+         body {
+             font-family: 'Orbitron', sans-serif;
+             background-color: var(--background-color);
+             color: var(--text-color);
+             line-height: 1.6;
+             overflow-x: hidden;
+         }
+
+         .header {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             background-color: rgba(6, 6, 21, 0.8);
+             padding: 20px;
+             box-shadow: 0 4px 10px rgba(0, 247, 255, 0.4);
+         }
+
+         .logo {
+             font-size: 2rem;
+             color: var(--primary-color);
+             font-weight: bold;
+         }
+
+         .sidebar-btn {
+             font-size: 2rem;
+             color: var(--primary-color);
+             cursor: pointer;
+             transition: transform 0.3s ease;
+         }
+
+         .sidebar {
+             position: fixed;
+             top: 0;
+             left: -250px;
+             width: 250px;
+             height: 100%;
+             background-color: rgba(6, 6, 21, 0.9);
+             transition: left 0.3s ease;
+             padding-top: 60px;
+         }
+
+         .sidebar.open {
+             left: 0;
+         }
+
+         .sidebar a {
+             display: block;
+             padding: 15px 20px;
+             color: var(--primary-color);
+             text-decoration: none;
+             font-size: 1.2rem;
+             transition: background-color 0.3s ease;
+         }
+
+         .sidebar a:hover {
+             background-color: var(--primary-color);
+             color: var(--background-color);
+         }
+
+         .wrapper-container {
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 20px;
+         }
+
+         .burat {
+             background: rgba(6, 6, 21, 0.6);
+             margin-bottom: 20px;
+             padding: 20px;
+             border-radius: 10px;
+             box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+         }
+
+         .burat-link {
+             text-decoration: none;
+             color: var(--primary-color);
+             font-weight: bold;
+             padding: 10px;
+             border: 2px solid var(--primary-color);
+             border-radius: 5px;
+             transition: all var(--transition-speed) ease;
+         }
+
+         .burat-link:hover {
+             background-color: var(--primary-color);
+             color: var(--background-color);
+             text-shadow: 0 0 var(--glow-strength) var(--primary-color);
+         }
+
+         .paste-section {
+             background: rgba(6, 6, 21, 0.6);
+             padding: 30px;
+             border-radius: 15px;
+             box-shadow: 0 0 30px rgba(0, 247, 255, 0.3);
+             margin-top: 30px;
+         }
+
+         .paste-section h2 {
+             font-size: 1.8rem;
+             margin-bottom: 15px;
+             text-align: center;
+         }
+
+         .paste-section textarea {
+             width: 100%;
+             height: 120px;
+             padding: 15px;
+             background: rgba(6, 6, 21, 0.7);
+             border: 2px solid var(--primary-color);
+             color: var(--text-color);
+             border-radius: 8px;
+             font-size: 1rem;
+             transition: border 0.3s ease;
+         }
+
+         .paste-section textarea:focus {
+             outline: none;
+             border-color: var(--secondary-color);
+         }
+
+         .paste-section button {
+             width: 100%;
+             padding: 15px;
+             background-color: var(--primary-color);
+             color: var(--background-color);
+             border: none;
+             border-radius: 8px;
+             font-size: 1.1rem;
+             cursor: pointer;
+             transition: background-color 0.3s ease;
+             margin-top: 15px;
+         }
+
+         .paste-section button:hover {
+             background-color: var(--secondary-color);
+         }
+
+         .paste-link-section {
+             background: rgba(6, 6, 21, 0.6);
+             padding: 25px;
+             border-radius: 15px;
+             box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+             display: none;
+             margin-top: 20px;
+         }
+
+         .paste-link-section h3 {
+             font-size: 1.6rem;
+             color: var(--primary-color);
+         }
+
+         .paste-link-section p {
+             font-size: 1.1rem;
+             margin-bottom: 15px;
+         }
+
+         .paste-link-section a {
+             color: var(--primary-color);
+             font-weight: bold;
+             text-decoration: none;
+             padding: 10px 20px;
+             border: 2px solid var(--primary-color);
+             border-radius: 8px;
+             transition: background-color 0.3s ease;
+         }
+
+         .paste-link-section a:hover {
+             background-color: var(--primary-color);
+             color: var(--background-color);
+         }
+     </style>
+ </head>
+
+ <body>
+
+     <header class="header">
+         <div class="logo">pistebin</div>
+         <div class="sidebar-btn" id="sidebar-btn" onclick="toggleSidebar()">&#9776;</div>
+     </header>
+
+     <div class="sidebar" id="sidebar">
+         <a href="https://josh-projects.vercel.app">Home</a>
+         <a href="/history">History</a>
+         <a href="https://www.facebook.com/apostol.joshua0">Contact</a>
+     </div>
+
+     <div class="wrapper-container">
+         <div class="paste-section">
+             <h2>Paste Content</h2>
+             <textarea id="content" placeholder="Paste your code or content here"></textarea>
+             <button id="saveBtn">Create New Paste</button>
+         </div>
+
+         <div class="paste-link-section" id="pasteLinkSection">
+             <h3>Your paste link:</h3>
+             <p>Your paste has been successfully saved! You can view it by clicking below:</p>
+             <a id="pasteLink" href="#" target="_blank">Paste URL</a>
+         </div>
+     </div>
+
+     <script>
+         document.getElementById('saveBtn').addEventListener('click', async () => {
+        const content = document.getElementById('content').value;
+        const response = await fetch('/api/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            document.getElementById('pasteLinkSection').style.display = 'block';
+            document.getElementById('pasteLink').href = result.url;
+            document.getElementById('pasteLink').innerText = result.url;
+        } else {
+            alert('Error saving paste');
+        }
+    });
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('open');
+    }
+     </script>
+
+ </body>
+
+ </html>
