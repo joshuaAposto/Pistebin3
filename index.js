@@ -71,24 +71,92 @@ app.get('/paste/:id', (req, res) => {
         res.send(`
             <html>
             <head>
-                <title>Pastebin</title>
+                <title>Pistebin</title>
                 <style>
-                    body { font-family: 'Arial', sans-serif; background-color: #f4f7fb; color: #333; }
-                    .container { max-width: 900px; margin: 30px auto; background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); }
-                    h2 { text-align: center; font-size: 30px; color: #2c6bed; margin-bottom: 20px; }
-                    pre { white-space: pre-wrap; word-wrap: break-word; background: #f7f7f7; padding: 20px; border-radius: 10px; font-size: 18px; color: #444; border: 1px solid #ddd; }
-                    .btn-container { text-align: center; margin-top: 20px; }
-                    .btn { background-color: #2c6bed; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 16px; transition: background-color 0.3s ease, transform 0.3s ease; }
-                    .btn:hover { background-color: #1d4a99; transform: scale(1.05); }
-                    .copy-btn { background-color: #2c6bed; margin-right: 15px; }
-                    .copy-btn:hover { background-color: #1d4a99; transform: scale(1.05); }
-                    .copy-message { display: none; margin-top: 10px; color: #2c6bed; font-size: 16px; text-align: center; }
-                    .loading-spinner { display: none; text-align: center; margin-top: 20px; }
-                    .loading-spinner:before { content: '⏳'; font-size: 30px; animation: spin 1s infinite linear; }
-                    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                    body {
+                        font-family: 'Arial', sans-serif;
+                        background-color: #f4f7fb;
+                        color: #333;
+                    }
+                    .container {
+                        max-width: 900px;
+                        margin: 30px auto;
+                        background-color: #ffffff;
+                        padding: 40px;
+                        border-radius: 12px;
+                        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+                    }
+                    h2 {
+                        text-align: center;
+                        font-size: 30px;
+                        color: #2c6bed;
+                        margin-bottom: 20px;
+                    }
+                    pre {
+                        white-space: pre-wrap;
+                        word-wrap: break-word;
+                        background: #f7f7f7;
+                        padding: 20px;
+                        border-radius: 10px;
+                        font-size: 18px;
+                        color: #444;
+                        border: 1px solid #ddd;
+                    }
+                    .btn-container {
+                        text-align: center;
+                        margin-top: 20px;
+                    }
+                    .btn {
+                        background-color: #2c6bed;
+                        color: white;
+                        padding: 12px 24px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        text-decoration: none;
+                        font-size: 16px;
+                        transition: background-color 0.3s ease, transform 0.3s ease;
+                    }
+                    .btn:hover {
+                        background-color: #1d4a99;
+                        transform: scale(1.05);
+                    }
+                    .copy-btn {
+                        background-color: #2c6bed;
+                        margin-right: 15px;
+                    }
+                    .copy-btn:hover {
+                        background-color: #1d4a99;
+                        transform: scale(1.05);
+                    }
+                    .copy-message {
+                        display: none;
+                        margin-top: 10px;
+                        color: #2c6bed;
+                        font-size: 16px;
+                        text-align: center;
+                    }
+                    .loading-spinner {
+                        display: none;
+                        text-align: center;
+                        margin-top: 20px;
+                    }
+                    .loading-spinner:before {
+                        content: '⏳';
+                        font-size: 30px;
+                        animation: spin 1s infinite linear;
+                    }
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
                     @media (max-width: 768px) {
-                        .container { padding: 30px; }
-                        .btn { width: 100%; }
+                        .container {
+                            padding: 30px;
+                        }
+                        .btn {
+                            width: 100%;
+                        }
                     }
                 </style>
             </head>
@@ -150,10 +218,32 @@ app.get('/history', (req, res) => {
                 <head>
                     <title>History - No Pastes</title>
                     <style>
-                        body { font-family: 'Arial', sans-serif; background-color: #f4f7fb; color: #333; margin: 0; padding: 0; }
-                        .container { max-width: 900px; margin: 30px auto; background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); }
-                        h2 { text-align: center; color: #2c6bed; font-size: 30px; margin-bottom: 20px; }
-                        p { text-align: center; font-size: 18px; color: #777; }
+                        body {
+                            font-family: 'Arial', sans-serif;
+                            background-color: #f4f7fb;
+                            color: #333;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .container {
+                            max-width: 900px;
+                            margin: 30px auto;
+                            background-color: #ffffff;
+                            padding: 40px;
+                            border-radius: 12px;
+                            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+                        }
+                        h2 {
+                            text-align: center;
+                            color: #2c6bed;
+                            font-size: 30px;
+                            margin-bottom: 20px;
+                        }
+                        p {
+                            text-align: center;
+                            font-size: 18px;
+                            color: #777;
+                        }
                     </style>
                 </head>
                 <body>
@@ -171,15 +261,56 @@ app.get('/history', (req, res) => {
             <head>
                 <title>Paste History</title>
                 <style>
-                    body { font-family: 'Arial', sans-serif; background-color: #f4f7fb; color: #333; margin: 0; padding: 0; }
-                    .container { max-width: 900px; margin: 30px auto; background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); }
-                    h2 { text-align: center; color: #2c6bed; font-size: 30px; margin-bottom: 20px; }
-                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                    th, td { padding: 12px; border: 1px solid #ddd; text-align: center; font-size: 16px; }
-                    th { background-color: #2c6bed; color: white; }
-                    td { background-color: #f9f9f9; }
-                    .btn { background-color: #2c6bed; color: white; padding: 8px 16px; border-radius: 5px; cursor: pointer; text-decoration: none; }
-                    .btn:hover { background-color: #1d4a99; }
+                    body {
+                        font-family: 'Arial', sans-serif;
+                        background-color: #f4f7fb;
+                        color: #333;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .container {
+                        max-width: 900px;
+                        margin: 30px auto;
+                        background-color: #ffffff;
+                        padding: 40px;
+                        border-radius: 12px;
+                        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+                    }
+                    h2 {
+                        text-align: center;
+                        color: #2c6bed;
+                        font-size: 30px;
+                        margin-bottom: 20px;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+                    th, td {
+                        padding: 12px;
+                        border: 1px solid #ddd;
+                        text-align: center;
+                        font-size: 16px;
+                    }
+                    th {
+                        background-color: #2c6bed;
+                        color: white;
+                    }
+                    td {
+                        background-color: #f9f9f9;
+                    }
+                    .btn {
+                        background-color: #2c6bed;
+                        color: white;
+                        padding: 8px 16px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
+                    .btn:hover {
+                        background-color: #1d4a99;
+                    }
                 </style>
             </head>
             <body>
