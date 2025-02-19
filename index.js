@@ -71,7 +71,7 @@ app.get('/paste/:id', (req, res) => {
         res.send(`
             <html>
             <head>
-                <title>Pastebin</title>
+                <title>Pistebin</title>
                 <style>
                     body {
                         font-family: 'Arial', sans-serif;
